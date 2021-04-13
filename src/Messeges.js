@@ -10,17 +10,9 @@ import {
   Image,
   KeyboardAvoidingView,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
-const Messeges = ({route, navigation}) => {
-  const [theText, setTheText] = useState('Hi and your mom so skinny');
-  const [theArrayText, setTheArrayText] = useState([theText]);
-  const [textCount, setTextCount] = useState(0);
-  const addEntryClick = () => {
-    setTheArrayText([...theArrayText, theText]);
-  };
-  const addTextCount = () => {
-    setTextCount(textCount + 1);
-  };
+const Messeges = ({Mess}) => {
   return (
     <View
       style={{
@@ -65,11 +57,11 @@ const Messeges = ({route, navigation}) => {
             marginHorizontal: 10,
             marginVertical: 15,
           }}>
-          {theArrayText[textCount]}
+          {Mess}
         </Text>
       </View>
     </View>
   );
 };
-
+Messeges.propTypes = {Mess: PropTypes.string.isRequired};
 export default Messeges;
