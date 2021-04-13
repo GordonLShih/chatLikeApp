@@ -12,9 +12,12 @@ import {
   Alert,
   Button,
 } from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const LoginScreen = ({navigation, route}) => {
   const [inputName, setInputName] = useState('');
+  const [response, setResponse] = useState(null);
+
   return (
     <View style={styles.containerView}>
       <Text>Enter Your Name</Text>
@@ -24,13 +27,48 @@ const LoginScreen = ({navigation, route}) => {
         style={styles.inputBox}
       />
       <Button
-        title="Login"
+        title="Login With Image"
         onPress={() => {
           // Alert.alert(inputName);
           // setInputName('');
-          navigation.navigate('ChatScreen', {
-            itemId: inputName,
-          });
+          launchImageLibrary(
+            {
+              mediaType: 'photo',
+              includeBase64: false,
+              maxHeight: 200,
+              maxWidth: 200,
+            },
+            (response) => {
+              setResponse(response);
+              navigation.navigate('ChatScreen', {
+                itemId: inputName,
+                chooseImage: response,
+              });
+            },
+          );
+        }}
+      />
+      <Button
+        title="Login With Photo Taken"
+        onPress={() => {
+          // Alert.alert(inputName);
+          // setInputName('');
+          launchCamera(
+            {
+              mediaType: 'photo',
+              includeBase64: false,
+              maxHeight: 200,
+              maxWidth: 200,
+              saveToPhotos: true,
+            },
+            (response) => {
+              setResponse(response);
+              navigation.navigate('ChatScreen', {
+                itemId: inputName,
+                chooseImage: response,
+              });
+            },
+          );
         }}
       />
     </View>

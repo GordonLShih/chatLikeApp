@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Messeges = ({Mess}) => {
+const Messeges = ({Mess, idImage}) => {
   return (
     <View
       style={{
@@ -21,7 +21,7 @@ const Messeges = ({Mess}) => {
         marginTop: 5,
         marginBottom: 5,
       }}>
-      <View
+      {/* <View
         style={{
           width: '13%',
           aspectRatio: 1,
@@ -29,6 +29,16 @@ const Messeges = ({Mess}) => {
           backgroundColor: '#d500e0',
           borderRadius: 10,
         }}
+      /> */}
+      <Image
+        style={{
+          width: '13%',
+          aspectRatio: 1,
+          marginRight: 20,
+          backgroundColor: '#d500e0',
+          borderRadius: 10,
+        }}
+        source={idImage}
       />
       <View
         style={{
@@ -63,5 +73,8 @@ const Messeges = ({Mess}) => {
     </View>
   );
 };
-Messeges.propTypes = {Mess: PropTypes.string.isRequired};
+Messeges.propTypes = {
+  Mess: PropTypes.string.isRequired,
+  idImage: PropTypes.string.isRequired,
+};
 export default Messeges;

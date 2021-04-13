@@ -28,7 +28,7 @@ const ChatScreen = ({navigation, route}) => {
   const scrollRef = useRef();
   const [theArray, setTheArray] = useState([]);
   const [theArrayText, setTheArrayText] = useState(['123']);
-  const {itemId} = route.params;
+  const {itemId, chooseImage} = route.params;
   var textCount = [theArrayText.length];
 
   const addEntryClick = () => {
@@ -39,7 +39,10 @@ const ChatScreen = ({navigation, route}) => {
     //   ...theArray,
     //   <FriendMesseges FMess={theArrayText[textCount]} />,
     // ]);
-    setTheArray([...theArray, <Messeges Mess={theArrayText[textCount]} />]);
+    setTheArray([
+      ...theArray,
+      <Messeges Mess={theArrayText[textCount]} idImage={chooseImage} />,
+    ]);
   };
 
   return (
