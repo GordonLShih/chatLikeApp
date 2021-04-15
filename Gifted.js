@@ -1,23 +1,12 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {GiftedChat, Bubble, Avatar} from 'react-native-gifted-chat';
+import {GiftedChat, Bubble, Avatar, Time} from 'react-native-gifted-chat';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 1,
-          name: 'React Native',
-          avatar:
-            'https://i.pinimg.com/236x/54/a4/00/54a4008daad4565a9b5db1b94e59c74c.jpg',
-        },
-      },
       {
         _id: 2,
         text: 'Your mom so fatdfdfdfdfdfdfdfdf dfdfdfdfdfdfdfdfdfdfdfdfdfdfd',
@@ -71,15 +60,16 @@ const App = () => {
       }}
       showUserAvatar={true}
       renderAvatarOnTop={true}
-      renderBubble={bubble}
+      renderBubble={renderBubble}
       renderAvatar={renderAvatar}
       timeFormat={'LT'}
       dateFormat={'LT'}
       showAvatarForEveryMessage={true}
+      renderTime={renderTime}
     />
   );
 };
-const bubble = (props) => {
+const renderBubble = (props) => {
   const styles = StyleSheet.create({
     triangle: {
       width: 10,
@@ -89,13 +79,13 @@ const bubble = (props) => {
     },
     leftTriangle: {
       backgroundColor: '#DDD',
-      top: 13,
+      top: 17,
       right: 4,
     },
     rightTriangle: {
       backgroundColor: '#8dcf34',
       left: 3,
-      top: 13,
+      top: 17,
       alignSelf: 'flex-end',
     },
   });
@@ -108,6 +98,24 @@ const bubble = (props) => {
             ? styles.leftTriangle
             : styles.rightTriangle,
         ]}
+      />
+      <Time
+        {...props}
+        timeTextStyle={{
+          left: {
+            color: 'black',
+            alignSelf: 'flex-end',
+            position: 'absolute',
+            top: 6,
+          },
+          right: {
+            color: 'black',
+            alignSelf: 'flex-start',
+            position: 'absolute',
+            top: 6,
+            // backgroundColor: '#DDD',
+          },
+        }}
       />
       <Bubble
         {...props}
@@ -130,6 +138,23 @@ const bubble = (props) => {
           },
         }}
       />
+      {/* <View>
+        <Time
+          {...props}
+          timeTextStyle={{
+            left: {
+              color: 'black',
+              backgroundColor: '#DDD',
+            //   position: 'absolute',
+              alignSelf: 'flex-end',
+            },
+            right: {
+              color: 'black',
+              backgroundColor: '#DDD',
+            },
+          }}
+        />
+      </View> */}
     </View>
   );
 };
@@ -140,12 +165,32 @@ const renderAvatar = (props) => {
       imageStyle={{
         left: {
           borderRadius: 3,
+          top: 12,
         },
         right: {
           borderRadius: 3,
+          top: 11,
         },
       }}
     />
+  );
+};
+
+const renderTime = (props) => {
+  return (
+    // <Time
+    //   {...props}
+    //   timeTextStyle={{
+    //     left: {
+    //       color: 'black',
+    //       alignSelf: 'flex-start',
+    //     },
+    //     right: {
+    //       color: 'black',
+    //     },
+    //   }}
+    // />
+    null
   );
 };
 
